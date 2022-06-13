@@ -1,14 +1,10 @@
 X:
-	PoliceDistrict 		- 11	-	OneHotEncoding
-	ReportTypeCode 		- 4	-	OneHotEncoding	
-	Incident Category	- 49	-	OneHotEncoding	
-	AnalysisNeighborhood	- 41	-	OneHotEncoding	
-	Resolution		- 4	-	OneHotEncoding	
-	IncidentDayOfWeek	- 7	-	OneHotEncoding	
+	PoliceDistrict 		- 11	-	OneHotEncoding?
+	ReportTypeCode 		- 4	-	OneHotEncoding	?
+	Incident Category	- 49	-	OneHotEncoding?
+	Resolution		- 4	-	OneHotEncoding	?
+	IncidentDayOfWeek	- 7	-	OneHotEncoding?
 	FiledOnline		- 2	-	Binary!
 
 
 Y:	TimeDifference
-
-
-???:	Latitude / Longitude / Point / SupervisorDistrict
