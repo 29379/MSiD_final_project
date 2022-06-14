@@ -1,5 +1,5 @@
-from Solution import Solution, custom_model_imp,\
-    linear_model_imp, svr_model_imp, y_axis, Y_test, X_test
+from Solution import Solution, custom_model_imp, \
+    linear_model_imp, svr_model_imp, y_range, Y_test, X_test
 import seaborn
 from matplotlib import pyplot
 
@@ -52,36 +52,88 @@ def plot(custom, linear, svr):
     axes[1, 1].set_title('SVR model')
     axes[1, 1].set_ylabel('Time difference')
 
-    seaborn.scatterplot(x=range(0, y_axis), y=Y_test, color='purple', ax=axes[0, 0])
-    seaborn.scatterplot(x=range(0, y_axis), y=custom.y_predicted, color='blue', ax=axes[0, 1])
-    seaborn.scatterplot(x=range(0, y_axis), y=linear.y_predicted, color='red', ax=axes[1, 0])
-    seaborn.scatterplot(x=range(0, y_axis), y=svr.y_predicted, color='green', ax=axes[1, 1])
+    seaborn.scatterplot(x=range(0, y_range), y=Y_test, color='purple', ax=axes[0, 0])
+    seaborn.scatterplot(x=range(0, y_range), y=custom.y_predicted, color='blue', ax=axes[0, 1])
+    seaborn.scatterplot(x=range(0, y_range), y=linear.y_predicted, color='red', ax=axes[1, 0])
+    seaborn.scatterplot(x=range(0, y_range), y=svr.y_predicted, color='green', ax=axes[1, 1])
 
     pyplot.show()
 
 
-def plot_details(custom, linear, svr):
-    names = list(X_test.keys())
-    districts = []
-    for name in names:
-        if "PoliceDistrict" in name:
-            districts.append(name)
-
-    #   seaborn.barplot(x=districts[0], y=Y_test, color='purple')
-    #   pyplot.show()
-    """fig, axes = pyplot.subplots(4, 3)
+def plot_district_details(custom, linear, svr):
+    fig, axes = pyplot.subplots(3, 4)
     fig.set_figheight(16)
     fig.set_figwidth(16)
-    axes[0, 0].set_title('Real data')
+    axes[0, 0].set_title("Real data")
+    axes[0, 0].set_xlabel("Police district - 'Bayview'")
     axes[0, 0].set_ylabel('Time difference')
-    axes[0, 1].set_title('Custom model')
+    axes[0, 1].set_title("Custom model")
+    axes[0, 1].set_xlabel("Police district - 'Bayview'")
     axes[0, 1].set_ylabel('Time difference')
-    axes[1, 0].set_title('Linear model')
+    axes[0, 2].set_title("Linear model")
+    axes[0, 2].set_xlabel("Police district - 'Bayview'")
+    axes[0, 2].set_ylabel('Time difference')
+    axes[0, 3].set_title("SVR model")
+    axes[0, 3].set_xlabel("Police district - 'Bayview'")
+    axes[0, 3].set_ylabel('Time difference')
+
+    axes[1, 0].set_xlabel("Police district - 'Out of SF'")
     axes[1, 0].set_ylabel('Time difference')
-    axes[1, 1].set_title('SVR model')
-    axes[1, 1].set_ylabel('Time difference')"""
+    axes[1, 1].set_xlabel("Police district - 'Out of SF'")
+    axes[1, 1].set_ylabel('Time difference')
+    axes[1, 2].set_xlabel("Police district - 'Out of SF'")
+    axes[1, 2].set_ylabel('Time difference')
+    axes[1, 3].set_xlabel("Police district - 'Out of SF'")
+    axes[1, 3].set_ylabel('Time difference')
+
+    axes[2, 0].set_xlabel("Police district - 'Southern'")
+    axes[2, 0].set_ylabel('Time difference')
+    axes[2, 1].set_xlabel("Police district - 'Southern'")
+    axes[2, 1].set_ylabel('Time difference')
+    axes[2, 2].set_xlabel("Police district - 'Southern'")
+    axes[2, 2].set_ylabel('Time difference')
+    axes[2, 3].set_xlabel("Police district - 'Southern'")
+    axes[2, 3].set_ylabel('Time difference')
+
+    seaborn.set(rc={'figure.figsize': (3, 3)})
+
+    seaborn.boxplot(x=X_test['PoliceDistrict_Bayview'], y=Y_test, color='purple', ax=axes[0, 0])
+    seaborn.boxplot(x=X_test['PoliceDistrict_Bayview'], y=custom.y_predicted, color='blue', ax=axes[0, 1])
+    seaborn.boxplot(x=X_test['PoliceDistrict_Bayview'], y=linear.y_predicted, color='red', ax=axes[0, 2])
+    seaborn.boxplot(x=X_test['PoliceDistrict_Bayview'], y=svr.y_predicted, color='green', ax=axes[0, 3])
+
+    seaborn.boxplot(x=X_test['PoliceDistrict_Out of SF'], y=Y_test, color='purple', ax=axes[1, 0])
+    seaborn.boxplot(x=X_test['PoliceDistrict_Out of SF'], y=custom.y_predicted, color='blue', ax=axes[1, 1])
+    seaborn.boxplot(x=X_test['PoliceDistrict_Out of SF'], y=linear.y_predicted, color='red', ax=axes[1, 2])
+    seaborn.boxplot(x=X_test['PoliceDistrict_Out of SF'], y=svr.y_predicted, color='green', ax=axes[1, 3])
+
+    seaborn.boxplot(x=X_test['PoliceDistrict_Southern'], y=Y_test, color='purple', ax=axes[2, 0])
+    seaborn.boxplot(x=X_test['PoliceDistrict_Southern'], y=custom.y_predicted, color='blue', ax=axes[2, 1])
+    seaborn.boxplot(x=X_test['PoliceDistrict_Southern'], y=linear.y_predicted, color='red', ax=axes[2, 2])
+    seaborn.boxplot(x=X_test['PoliceDistrict_Southern'], y=svr.y_predicted, color='green', ax=axes[2, 3])
+
+    pyplot.show()
 
 
+def plot_custom_model(custom):
+    seaborn.set(rc={'figure.figsize': (16, 16)})
+    seaborn.scatterplot(x=range(0, y_range), y=Y_test, color='purple').set(title="Custom model")
+    seaborn.scatterplot(x=range(0, y_range), y=custom.y_predicted, color='blue')
+    pyplot.show()
+
+
+def plot_linear_model(linear):
+    seaborn.set(rc={'figure.figsize': (16, 16)})
+    seaborn.scatterplot(x=range(0, y_range), y=Y_test, color='purple').set(title="Linear model")
+    seaborn.scatterplot(x=range(0, y_range), y=linear.y_predicted, color='blue')
+    pyplot.show()
+
+
+def plot_svr_model(svr):
+    seaborn.set(rc={'figure.figsize': (16, 16)})
+    seaborn.scatterplot(x=range(0, y_range), y=Y_test, color='purple').set(title="SVR model")
+    seaborn.scatterplot(x=range(0, y_range), y=svr.y_predicted, color='blue')
+    pyplot.show()
 
 
 def run():
@@ -89,8 +141,11 @@ def run():
     linear_solution = linear_model_imp()
     svr_solution = svr_model_imp()
     show_error_values(custom_solution, linear_solution, svr_solution)
-    #plot(custom_solution, linear_solution, svr_solution)
-    plot_details(custom_solution, linear_solution, svr_solution)
+    plot(custom_solution, linear_solution, svr_solution)
+    plot_district_details(custom_solution, linear_solution, svr_solution)
+    plot_custom_model(custom_solution)
+    plot_linear_model(linear_solution)
+    plot_svr_model(svr_solution)
 
 
 if __name__ == '__main__':

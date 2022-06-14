@@ -11,11 +11,11 @@ import numpy as np
 
 X, Y = read_data(dataset)
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.20, random_state=42)
-y_axis = len(Y_test)
+y_range = len(Y_test)
 
 
 def custom_model_imp():
-    params, _ = curve_fit(mapping_fun, xdata=X_train, ydata=Y_train,
+    params, _ = curve_fit(mapping_fun, xdata=X_train, ydata=Y_train.ravel(),
                           p0=np.ones((len(X_train.columns) + 1)))
     model = CustomModel(params)
     Y_predicted = model.run(X_test)

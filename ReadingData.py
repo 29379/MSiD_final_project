@@ -49,6 +49,8 @@ def read_data(file_name):
     dataframe = dataframe[dataframe.TimeDifference < (q1 + limit)]
     dataframe = dataframe[dataframe.IncidentCategory != 0]
 
+    print(dataframe.columns)
+
     X = dataframe
     Y = X['TimeDifference']
     X.drop(['TimeDifference'], axis=1, inplace=True)
