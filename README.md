@@ -3,4 +3,4 @@ Linear regression based project. It gathers the required data from the "San Fran
 
 Link to the dataset: https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783
 
-Aby uruchomić program należy pobrać dataset znajdujący się na stronie w formacie ".csv", do której link podany został powyżej i umieścić go w głównym katalogu projektu wraz z pozostałymi plikami.
+Aby uruchomić program należy pobrać dataset znajdujący się na stronie do której link podany został powyżej w formacie ".csv" i umieścić go w głównym katalogu projektu wraz z pozostałymi plikami.
